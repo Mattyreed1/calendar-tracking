@@ -1,4 +1,4 @@
-function weeklyCalendarTracker(day2) {
+function weeklyCalendarTracker(endOfWeek) {
   var ss = SpreadsheetApp.getActive();
   var weeklySheet = ss.getSheetByName('Calendar Data by Week');
   var totalsSheet = ss.getSheetByName('Calendar Data Totals');
@@ -8,7 +8,7 @@ function weeklyCalendarTracker(day2) {
   var numColumns = weeklyDataRange.getNumColumns();
   var nextColumn = numColumns + 1;
   
-  weeklySheet.getRange(1, nextColumn).setValue(new Date(day2.getTime()-(24*3600*1000)));
+  weeklySheet.getRange(1, nextColumn).setValue(new Date(endOfWeek.getTime()-(24*3600*1000)));
   
   for (var i=2; i <= numRows; i++){
     var categoryTime = dataImportSheet.getRange(i, 4).getValue();

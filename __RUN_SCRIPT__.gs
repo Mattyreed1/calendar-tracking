@@ -1,11 +1,11 @@
 function runScript() {
   
   //~~~~~~~~Manually input information.~~~~~~~~
-  var inputStartDay = 'March 2, 2020 00:00:00 -0800'
-  var inputNumOfWeeks = 4
+  var inputStartDay = 'March 2, 2020 00:00:00 -0800';
+  var inputNumOfWeeks = 1;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
-  var startDay = new Date(inputStartDay);
+  var startDay = new Date(inputStartDay);  
   Logger.log(startDay);
   var list = listOfWeeks(startDay, inputNumOfWeeks);
   Logger.log(list);
