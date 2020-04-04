@@ -1,5 +1,6 @@
 function defineCellRange(sheetName,weekNumber) {
-  var myProject = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/16mP3GLWkk7sfP-JLKI_DNbn_Vnko_WQ_enOAVXjDGYM/');
+  // var myProject = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/16mP3GLWkk7sfP-JLKI_DNbn_Vnko_WQ_enOAVXjDGYM/');
+  var myProject = SpreadsheetApp.getActive();
   var mySheet = myProject.getSheetByName(sheetName);
   var inputColumn = mySheet.getRange(2,2,14,20);
   var columnNumber = weekNumber + 2;

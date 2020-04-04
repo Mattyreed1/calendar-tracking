@@ -1,15 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~GET START DAY & # OF WEEKS FROM USER INPUT~~~~~~~~~~~~~~~~~~~~~~~~~
 function listOfWeeks(startDay, numberOfWeeks) {
   
-  // var startDay = new Date();
-  // var numberOfWeeks = 2;
   // var dateString = Utilities.formatDate(startDay, 'MMMM dd, yyyy 00:00:00 -0800');
-  
-  // var startWeek1 = startDay; 
-  
-  // var day2 = startWeek1.getDate() + 7;
-
-  // var endWeek1 = new Date('November '+day2+', 2019 00:00:00 -0800'); // StartWeek1 + 7 days
   
   var numWeeks = (1000 * 60 * 60 * 24)*(7)*(numberOfWeeks);
   var endTimeFrame = new Date(startDay.getTime() + numWeeks);
@@ -30,9 +22,9 @@ function listOfWeeks(startDay, numberOfWeeks) {
   // Logger.log(listWeeks);
   return listWeeks;
 
-  
   // Logger.log('%s , %s',startWeek1, endTimeFrame);
 }
+
 
 //~~~~~~~~~~~~~~~~~~TAKE START/END DAYS FOR INDIVIDUAL WEEK~~~~~~~~~~~~~~~~~~~~
 function trackerTestScript(day1, day2){
@@ -57,6 +49,7 @@ function trackerTestScript(day1, day2){
 //~~~~~~~~~~~~~~~~~~RETURN LIST OF EVENTS FOR SINGLE WEEK~~~~~~~~~~~~~~~~~~~~  
   return events
 }
+
 
 //~~~~~~~~~~~~~~TAKE LIST OF EVENTS FOR ONE WEEK~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function getEventDetails(events) {
