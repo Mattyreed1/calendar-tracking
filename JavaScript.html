@@ -1,0 +1,29 @@
+<script>
+window.addEventListener('load', function() {
+  console.log('Page is loaded');
+});
+</script>
+
+<script>
+// Pass input dates to server-side submitDates()
+function submitDates() {
+  var startDate = $("#startdatepicker").val();
+  var endDate = $("#enddatepicker").val();
+
+  google.script.run
+        .withSuccessHandler(
+           // Dates delivered, close dialog
+           function() {
+             google.script.host.close();
+           })
+           // Display failure messages
+         .withFailureHandler(
+           function() {
+             var div = $('<div id="error" class="error">' + msg + '</div>');
+             $(element).after($("#demo"));
+           })
+         .submitDates(startDate,endDate);
+}
+</script>
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('Stylesheet'); ?>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <p>Please enjoy this helpful script.</p>
+    <div class="demo" >
+    <style type="text/css"> .demo { margin: 30px ; color : #AAA ; font-family : arial sans-serif ;font-size : 10pt } 
+                            p { color : red ; font-size : 11pt } 
+    </style>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    
+    <p>Please select a date below :</p>
+    <p> Start Date : <input type="text" name="StartDate" id="startdatepicker" /> </p>
+    <p> End Date :   <input type="text" name="EndDate" id="enddatepicker" /> </p>
+    <script>
+    $( "#startdatepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 0,
+     });
+     </script>
+     <script>
+    $( "#enddatepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 0,
+     });
+     </script>
+     <script>
+     // Pass input dates to server-side submitDates()
+     function submitDates() {
+     var startDate = $("#startdatepicker").val();
+     var endDate = $("#enddatepicker").val();
+     google.script.run
+        .withSuccessHandler(
+           // Dates delivered, close dialog
+           function() {
+             google.script.host.close();
+           })
+           // Display failure messages
+         .withFailureHandler(
+           function() {
+             var div = $('<div id="error" class="error">' + msg + '</div>');
+             $(element).after($("#demo"));
+           })
+         .submitDates(startDate,endDate);
+         }
+     </script>
+     <input type="button" value="Run" onclick="submitDates()" />
+     </div>
+    <?!= include('JavaScript'); ?>
+  </body>
+</html>
+
+
