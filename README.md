@@ -1,2 +1,3 @@
 # calendar-tracking
-Scripts that track calendar events over time.
+Scripts that track calendar events.
+
