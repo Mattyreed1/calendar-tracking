@@ -56,7 +56,7 @@ function getEventDetails(events) {
   
   // Access Google Calendar Time Tracker spreadsheet and input data for specified color category.
   // Create array of category cells (location in spreadsheet). index 0 is 'undefined' cell.
-  var cellColorArray1 = defineCellRange('Calendar Data Import', 1);
+  var cellColorArray1 = defineCellRange('Calendar Data Import', 'D');
   // Populate cells with 0.00 to reset
   for (i = 0; i < 12; i++) {
     cellColorArray1[i].setValue(0);

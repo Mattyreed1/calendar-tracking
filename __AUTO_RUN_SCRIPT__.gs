@@ -1,8 +1,9 @@
 function autoRunScript() {
   
+  weeklyChecklistTracker();
+  
   // Get day exactly 1 week ago.
   var startDay = new Date(new Date().getTime() - (1000 * 60 * 60 * 24)*(7));
-  
   Logger.log(startDay);
   var list = listOfWeeks(startDay, 1);
   Logger.log(list);

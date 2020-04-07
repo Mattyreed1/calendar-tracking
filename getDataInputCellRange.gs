@@ -1,9 +1,20 @@
-function defineCellRange(sheetName,weekNumber) {
+function letterToColumn(letter)
+{
+  var letterUpper = letter.toUpperCase();
+  var column = 0, length = letterUpper.length;
+  for (var i = 0; i < length; i++)
+  {
+    column += (letterUpper.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
+  }
+  return column;
+}
+
+function defineCellRange(sheetName,columnLetter) {
   // var myProject = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/16mP3GLWkk7sfP-JLKI_DNbn_Vnko_WQ_enOAVXjDGYM/');
   var myProject = SpreadsheetApp.getActive();
   var mySheet = myProject.getSheetByName(sheetName);
   var inputColumn = mySheet.getRange(2,2,14,20);
-  var columnNumber = weekNumber + 2;
+  var columnNumber = letterToColumn(columnLetter);
   var simpleArray = new Array(12);
   for (var i = 0; i < 12; i++) {
     simpleArray[i] = i;
