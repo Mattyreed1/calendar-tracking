@@ -2,11 +2,13 @@ function letterToColumn(letter)
 {
   var letterUpper = letter.toUpperCase();
   var column = 0, length = letterUpper.length;
-  for (var i = 0; i < length; i++)
-  {
+  for (var i = 0; i < length; i++) {
     column += (letterUpper.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
+    Logger.log("%s * %s", letterUpper.charCodeAt(i), Math.pow(26, length - i - 1));
   }
-  return column;
+  var ssColumn = column - 1;
+  Logger.log(ssColumn)
+  return ssColumn;
 }
 
 function defineCellRange(sheetName,columnLetter) {

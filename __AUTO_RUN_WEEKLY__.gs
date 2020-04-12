@@ -1,4 +1,4 @@
-function autoRunScript() {
+function autoRunScriptWeekly() {
   
   weeklyChecklistTracker();
   
@@ -9,7 +9,7 @@ function autoRunScript() {
   Logger.log(list);
   for (n = 0; n < list.length; n++){
     Logger.log('%s - %s', list[n][0], list[n][1]);
-    var eventsList = trackerTestScript(list[n][0], list[n][1]);
+    var eventsList = trackEvents(list[n][0], list[n][1]);
     getEventDetails(eventsList);
     weeklyCalendarTracker(list[n][1]);
   }
