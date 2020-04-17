@@ -4,10 +4,10 @@ function letterToColumn(letter)
   var column = 0, length = letterUpper.length;
   for (var i = 0; i < length; i++) {
     column += (letterUpper.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
-    Logger.log("%s * %s", letterUpper.charCodeAt(i), Math.pow(26, length - i - 1));
+    // Logger.log("%s * %s", letterUpper.charCodeAt(i), Math.pow(26, length - i - 1));
   }
   var ssColumn = column - 1;
-  Logger.log(ssColumn)
+  // Logger.log(ssColumn)
   return ssColumn;
 }
 

@@ -1,17 +1,17 @@
 function weeklyChecklistTracker() {
   var ss = SpreadsheetApp.getActive();
-  var weeklySheet = ss.getSheetByName('Weekly Checklist Data');
-  var dataInputSheet = ss.getSheetByName('Weekly Task Checklist');
-  var weeklyDataRange = weeklySheet.getDataRange();
-  var numRows = weeklyDataRange.getNumRows();
-  var numColumns = weeklyDataRange.getNumColumns();
-  var nextColumn = numColumns + 1;
-  
+  var weeklyOutput = ss.getSheetByName('Weekly Checklist Data');
+  var dataInputSheet1 = ss.getSheetByName('Weekly Task Checklist');
+  var weeklyDataRange1 = weeklyOutput.getDataRange();
+  var numRows1 = weeklyDataRange1.getNumRows();
+  var numColumns1 = weeklyDataRange1.getNumColumns();
+  var nextColumn1 = numColumns1 + 1;
+  Logger.log(numColumns1);
   var endOfWeek = new Date();
-  weeklySheet.getRange(1, nextColumn).setValue(new Date(endOfWeek.getTime()-(24*3600*1000)));
+  weeklyOutput.getRange(1, nextColumn1).setValue(new Date(endOfWeek.getTime()-(24*3600*1000)));
   
-  for (var i=2; i <= numRows; i++){
-    var percentages = dataInputSheet.getRange(i, 4).getValue();
-    weeklySheet.getRange(i, numColumns + 1).setValue(percentages);
+  for (var i=2; i <= numRows1; i++){
+    var percentages = dataInputSheet1.getRange(i, 4).getValue();
+    weeklyOutput.getRange(i, numColumns1 + 1).setValue(percentages);
   } 
 }
