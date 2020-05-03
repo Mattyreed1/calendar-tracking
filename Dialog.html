@@ -1,23 +1,38 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <base target="_top">
-    <?!= include('Stylesheet'); ?>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css">
+    <?!= include('Stylesheet') ?>
   </head>
+  
   <body>
     <h1>Welcome</h1>
     <p>Please enjoy this helpful script.</p>
-    <div class="demo" >
-    <style type="text/css"> .demo { margin: 30px ; color : #AAA ; font-family : arial sans-serif ;font-size : 10pt } 
-                            p { color : red ; font-size : 11pt } 
-    </style>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css">
+    <div class="demo">
+    
+      <p>Please select a date below :</p>
+      <p> Start Date : <input type="text" name="StartDateInput" id="startdatepicker" /> </p>
+      <p> End Date :   <input type="text" name="EndDateInput" id="enddatepicker" /> </p>
+    
+      <h4>BUTTONS:</h4>
+      <input type="button" value="Run" class="action" onclick="runScript()" />
+      <input type="submit" value="Submit" class="action" onclick="form_data()" />
+      <input type="button" value="TEST" class="action" 
+      onclick="google.script.run.withSuccessHandler(submitDates).testFunc();" />
+      <input type="button" value="Close" onclick="google.script.host.close()" />
+    </div>
+    
+    <div id="output"></div>
+    
+    <script> google.script.run.doSomething(); </script>
+     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
     
-    <p>Please select a date below :</p>
-    <p> Start Date : <input type="text" name="StartDate" id="startdatepicker" /> </p>
-    <p> End Date :   <input type="text" name="EndDate" id="enddatepicker" /> </p>
     <script>
     $( "#startdatepicker" ).datepicker({
       showWeek: true,
@@ -30,30 +45,55 @@
       firstDay: 0,
      });
      </script>
+     
      <script>
      // Pass input dates to server-side submitDates()
-     function submitDates() {
-     var startDate = $("#startdatepicker").val();
-     var endDate = $("#enddatepicker").val();
-     google.script.run
-        .withSuccessHandler(
-           // Dates delivered, close dialog
-           function() {
-             google.script.host.close();
-           })
-           // Display failure messages
+     function submitDates(testArg) {
+       var startDateInput = $("#startdatepicker").val();
+       var endDateInput = $("#enddatepicker").val();
+       
+       
+       var div = document.getElementById('output');
+       div.innerHTML = 'Wow! '+testArg+'!';
+       
+       
+       // google.script.run.withSuccessHandler().loggerFunc(startDateInput, endDateInput);
+     
+       /*
+       // Display failure messages
          .withFailureHandler(
            function() {
              var div = $('<div id="error" class="error">' + msg + '</div>');
              $(element).after($("#demo"));
-           })
-         .submitDates(startDate,endDate);
-         }
+           });
+       */
+       
+       // Dates delivered, close dialog
+       // google.script.host.close();
+       //.closeIt();
+       
+     };
      </script>
-     <input type="button" value="Run" onclick="submitDates()" />
-     </div>
-    <?!= include('JavaScript'); ?>
+     
+     <script>
+     function runScript() {
+       google.script.run.withSuccessHandler(submitDates).testFunc();
+     
+     }
+     
+     </script>
+     
+     
+     <script>
+     function form_data(){
+       var startDateInput = $("#startdatepicker").val();
+       var endDateInput = $("#enddatepicker").val();
+       var div = document.getElementById('output');
+       div.innerHTML = 'You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.';
+       google.script.run.withSuccessHandler().loggerFunc(startDateInput, endDateInput);
+       // google.script.host.close();
+     };
+     </script>
+
   </body>
 </html>
-
-

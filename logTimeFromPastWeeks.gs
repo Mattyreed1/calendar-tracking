@@ -86,14 +86,24 @@ function getEventDetails(events) {
         Logger.log('%s (%s)', myEvent.summary, 'ALL DAY EVENT');
       }
       else {
+        
+        /* ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
+        if (myEvent.summary == "Python"){
+          var cellContents = cellColorArray1[9].getValue();
+          cellColorArray1[9].setValue( cellContents + duration);
+          Logger.log(myEvent.summary)
+        }
+       */
+        
 //~~~~~~~~~~~~~~INPUT EVENT DETAILS INTO SPREADSHEET~~~~~~~~~~~~~~~~~~~~~~~~~~~
         //////////////////////CONDENSE CODE////////////////////////////////
       // Add total duration per week for each color in spreadsheet
-        switch(colorID){
+          switch(colorID){
           case 1:
             // Fitness
             var cellContents = cellColorArray1[1].getValue();
             cellColorArray1[1].setValue(cellContents + duration);
+            Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
             break;
           case 2:
             // Plan

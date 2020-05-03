@@ -1,3 +1,4 @@
+<?
 <script>
 window.addEventListener('load', function() {
   console.log('Page is loaded');
@@ -7,8 +8,8 @@ window.addEventListener('load', function() {
 <script>
 // Pass input dates to server-side submitDates()
 function submitDates() {
-  var startDate = $("#startdatepicker").val();
-  var endDate = $("#enddatepicker").val();
+  var startDateInput = $("#startdatepicker").val();
+  var endDateInput = $("#enddatepicker").val();
 
   google.script.run
         .withSuccessHandler(
@@ -22,8 +23,23 @@ function submitDates() {
              var div = $('<div id="error" class="error">' + msg + '</div>');
              $(element).after($("#demo"));
            })
-         .submitDates(startDate,endDate);
+         .submitDates(startDateInput,endDateInput)
+         .loggerFunc(startDateInput,endDateInput);
 }
 </script>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script>
+      function form_data(){
+        var values = (startDateInput,endDateInput);
+        google.script.run.withSuccessHandler().loggerFunc(values);
+        closeIt()
+      };
+      function closeIt(){
+        google.script.host.close()
+      };
+      
+    </script>
+?> 
 
