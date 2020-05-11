@@ -2,13 +2,13 @@ function runScriptManual() {
   
   //~~~~~~~~Manually input information.~~~~~~~~
   // Input Monday date. Use the exact formatting as seen below.
-  var inputStartDay = 'February 1, 2020 00:00:00 -0800';
-  var inputNumOfWeeks = 12;
+  var inputStartDay = 'April 27, 2020 00:00:00 -0800';
+  var inputNumOfWeeks = 1;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   var startDay = new Date(inputStartDay);  
   Logger.log(startDay);
-  var list = listOfWeeks(startDay, inputNumOfWeeks);
+  var list = listOfWeeks(startDay,inputNumOfWeeks);
   Logger.log(list);
   for (n = 0; n < list.length; n++){
     Logger.log('%s - %s', list[n][0], list[n][1]);

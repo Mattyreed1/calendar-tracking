@@ -1,14 +1,20 @@
 //~~~~~~~~~~~~~~~~~~~~GET START DAY & # OF WEEKS FROM USER INPUT~~~~~~~~~~~~~~~~~~~~~~~~~
-function listOfWeeks(startDay, numberOfWeeks) {
+function listOfWeeks(startDay, endDay) {
   
   // var dateString = Utilities.formatDate(startDay, 'MMMM dd, yyyy 00:00:00 -0800');
-  
-  var numWeeks = (1000 * 60 * 60 * 24)*(7)*(numberOfWeeks);
-  var endTimeFrame = new Date(startDay.getTime() + numWeeks);
+
+  var d1 = startDay.valueOf();
+  var d2 = endDay.valueOf();
+  // Get difference in days.
+  var diffInDays = Math.floor((d2-d1)/(24*3600*1000));
+  Logger.log(diffInDays);  
+  //Get number of weeks.
+  var numWeeks = Math.floor(diffInDays/7);
+  // var endTimeFrame = new Date(startDay.getTime() + numWeeks);
   
   var listWeeks = [];
   var startEnd = [];
-  for (i=0; i < numberOfWeeks; i++) {
+  for (i=0; i < numWeeks; i++) {
     var week = (1000 * 60 * 60 * 24)*(7);
   
     var startWeek = new Date(startDay.getTime() + week*i);
