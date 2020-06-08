@@ -8,12 +8,58 @@ function weeklyCalendarTracker(endOfWeek) {
   var numColumns = weeklyDataRange.getNumColumns();
   var nextColumn = numColumns + 1;
   
+  //If date in cell in row 1 == endOfWeek (sunday at end of week), then replace column with new data array.
+  var sunday = new Date(new Date(endOfWeek).getTime() - (1000 * 60 * 60 * 24));
+  var sunday_noTime = new Date(sunday.toDateString());
+  var dataInputArray = [];
+  var numInputRows = 13;
+  for (var i=2; i <= numInputRows; i++){
+    dataInputArray.push(dataImportSheet.getRange(i, 4).getValue());
+  }
+  
+  Logger.log(dataInputArray);
+  
+  const fn = function(v) {
+    return [ v ];
+  };
+  
+  
+  for (var i=4; i <= numColumns; i++){
+    var date = new Date(weeklySheet.getRange(1,i).getValue());
+    // Convert date format to show only day date and not time.
+    var date_noTime = new Date(date.toDateString());
+    // Logger.log(date,sunday);
+    Logger.log(date_noTime, sunday_noTime);
+    // Logger.log(date_noTime.getTime(), sunday_noTime.getTime());
+    
+    
+    if (date_noTime.getTime() == sunday_noTime.getTime()){
+      weeklySheet.getRange(2,i,dataInputArray.length).setValues(dataInputArray.map(fn));
+      Logger.log("Dates match");
+      break;
+    }
+    else if (i == numColumns){
+      weeklySheet.getRange(1, nextColumn).setValue(sunday);
+      weeklySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(fn));
+      Logger.log("Dates don't match")
+      break;
+    }
+    else{
+      continue;
+    }
+  }
+  
+
+  
+  /*
   weeklySheet.getRange(1, nextColumn).setValue(new Date(endOfWeek.getTime()-(24*3600*1000)));
   
   for (var i=2; i <= numRows; i++){
     var categoryTime = dataImportSheet.getRange(i, 4).getValue();
     weeklySheet.getRange(i, numColumns + 1).setValue(categoryTime);
   }
+  */
+  
 /*  
   for (var i=2; i <= 13; i++){
     var categoryTimes = dataImportSheet.getRange(i, 4).getValue();

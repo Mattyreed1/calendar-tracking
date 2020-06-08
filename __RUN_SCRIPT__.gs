@@ -2,7 +2,8 @@ function runScriptManual() {
   
   //~~~~~~~~Manually input information.~~~~~~~~
   // Input Monday date. Use the exact formatting as seen below.
-  var inputStartDay = 'April 27, 2020 00:00:00 -0800';
+  var inputStartDay = 'May 4, 2020 00:00:00 -0800';
+  var inputEndDay = 'null';
   var inputNumOfWeeks = 1;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   

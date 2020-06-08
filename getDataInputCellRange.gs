@@ -21,6 +21,7 @@ function defineCellRange(sheetName,columnLetter) {
   for (var i = 0; i < 12; i++) {
     simpleArray[i] = i;
   }
+  
   var cellColorArray1 = new Array(12);
   for (var i = 0; i < 12; i++) {
     cellColorArray1[i] = inputColumn.getCell((simpleArray[i]+1),columnNumber);

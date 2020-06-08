@@ -1,15 +1,20 @@
 //~~~~~~~~~~~~~~~~~~~~GET START DAY & # OF WEEKS FROM USER INPUT~~~~~~~~~~~~~~~~~~~~~~~~~
-function listOfWeeks(startDay, endDay) {
+function listOfWeeks(startDay, endDay, inputNumOfWeeks=0) {
   
   // var dateString = Utilities.formatDate(startDay, 'MMMM dd, yyyy 00:00:00 -0800');
 
-  var d1 = startDay.valueOf();
-  var d2 = endDay.valueOf();
-  // Get difference in days.
-  var diffInDays = Math.floor((d2-d1)/(24*3600*1000));
-  Logger.log(diffInDays);  
-  //Get number of weeks.
-  var numWeeks = Math.floor(diffInDays/7);
+  if (inputNumOfWeeks == 0){
+    var d1 = startDay.valueOf();
+    var d2 = endDay.valueOf();
+    // Get difference in days.
+    var diffInDays = Math.floor((d2-d1)/(24*3600*1000));
+    Logger.log("Difference in days = %s", diffInDays);  
+    //Get number of weeks.
+    var numWeeks = Math.floor(diffInDays/7); 
+  } else {
+    var numWeeks = inputNumOfWeeks; 
+  }
+
   // var endTimeFrame = new Date(startDay.getTime() + numWeeks);
   
   var listWeeks = [];
@@ -24,11 +29,36 @@ function listOfWeeks(startDay, endDay) {
     var startEnd = [startWeek,endWeek];
     listWeeks.push(startEnd);
   };
-  //~~~~~~~~~~~~~~~RETURN A LIST OF START/END DAYS OF FOR # OF WEEKS~~~~~~~~~~~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~RETURN A LIST OF START/END TIMES FOR # OF DAYS~~~~~~~~~~~~~~~~~~~~~~
   // Logger.log(listWeeks);
   return listWeeks;
 
   // Logger.log('%s , %s',startWeek1, endTimeFrame);
+}
+
+function listOfDays(startDay, endDay) {
+
+  var d1 = startDay.valueOf();
+  var d2 = endDay.valueOf();
+  // Get difference in days.
+  var numDays = Math.floor((d2-d1)/(24*3600*1000));
+  Logger.log("Number of days = %s", numDays);  
+    
+  var listDays = [];
+  var startEnd = [];
+  for (i=0; i < numDays; i++) {
+    var oneDay = (1000 * 60 * 60 * 24);
+  
+    var startDayTime = new Date(startDay.getTime() + oneDay*i);
+
+    var endDayTime = new Date(startDay.getTime() + oneDay*(i+1));
+    
+    var startEnd = [startDayTime,endDayTime];
+    listDays.push(startEnd);
+  };
+  
+  //~~~~~~~~~~~~~~~RETURN A LIST OF START/END TIMES OF FOR # OF DAYS~~~~~~~~~~~~~~~~~~~~~~
+  return listDays;
 }
 
 

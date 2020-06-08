@@ -13,9 +13,12 @@
     <div class="demo">
     
       <p>Select a Monday start date and Monday end date below:</p>
-      <p> Start Date : <input type="text" name="StartDateInput" id="startdatepicker" /> </p>
-      <p> End Date :   <input type="text" name="EndDateInput" id="enddatepicker" /> </p>
-    
+      <p> Start Date: <input type="text" name="StartDateInput" id="startdatepicker"/> </p>
+      <p> End Date:   <input type="text" name="EndDateInput" id="enddatepicker"/> </p>
+      
+      
+      
+      <button onclick="myFunction()">TEST</button>
       <input type="submit" value="Submit" class="action" onclick="submit_data()" />
       <input type="button" value="Close" onclick="google.script.host.close()" />
     </div>
@@ -43,26 +46,35 @@
      
      <script>
      function runScript() {
-       google.script.run.withSuccessHandler(submitDates).testFunc();
-     
-     }
-     
+       //Logger.log("this worked");
+       google.script.run.withSuccessHandler(submitDates).testFunc(); 
+     };
      </script>
+     
+     <script>
+  function myFunction() {   
+    //Logger.log("it worked");
+    alert('Button was clicked!');
+  }
+</script>
      
      
      <script>
-     
-     function submit_data(){
+     function submit_data() {
+       
        var startDateInput = $("#startdatepicker").val();
        var endDateInput = $("#enddatepicker").val();
        var div = document.getElementById('output');
-       div.innerHTML = 'You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.';
+       
+       // Throw error message if anyhting but Monday's are selected.
+       // if (startMomentDate.getDay()   endMomentDate
+       
+       // div.innerHTML = 'You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.';
        
        google.script.run.withSuccessHandler()
          .runScriptFromInput(startDateInput, endDateInput);
-       // google.script.host.close();
+     alert('You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.');
      };
-     
      </script>
 
   </body>

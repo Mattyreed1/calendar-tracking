@@ -30,22 +30,24 @@ function initializeDialog() {
 
 
 function runScriptFromInput(startDateInput, endDateInput) {
+  
   //Convert date strings to usable formatt.
   var startMomentDate = Moment.moment(startDateInput, "MM/DD/YYYY").toDate();
   var endMomentDate = Moment.moment(endDateInput, "MM/DD/YYYY").toDate();
   
   //Display the values submitted from the dialog box in the Logger.
   Logger.log("Start date - End date = %s - %s",startMomentDate, endMomentDate);
-  Logger.log("Start date - End date = %s - %s",startDateInput, endDateInput);
+  Logger.log(startMomentDate.getDay(),endMomentDate.getDay());
        
   var list = listOfWeeks(startMomentDate, endMomentDate);
-  Logger.log(list);
+  Logger.log("list of weeks %s", list);
     for (n = 0; n < list.length; n++){
        Logger.log('%s - %s', list[n][0], list[n][1]);
        var eventsList = trackEvents(list[n][0], list[n][1]);
        getEventDetails(eventsList);
        weeklyCalendarTracker(list[n][1]);
     };
+  autoRunScriptDaily(startMomentDate,endMomentDate);
 };
 
 
@@ -54,6 +56,7 @@ function closeIt(){
 };
 
 function testFunc(){
+  Logger.log("It worked");
   return "It worked";
 };
 
