@@ -35,6 +35,7 @@ function weeklyCalendarTracker(endOfWeek) {
     
     if (date_noTime.getTime() == sunday_noTime.getTime()){
       weeklySheet.getRange(2,i,dataInputArray.length).setValues(dataInputArray.map(fn));
+      // input subcategory array
       Logger.log("Dates match");
       break;
     }

@@ -45,7 +45,7 @@ function dailyCalendarTracker(startOfDay) {
       break;
     }
     else if (i == numColumns){
-      dailySheet.getRange(1, nextColumn).setValue(sunday);
+      dailySheet.getRange(1, nextColumn).setValue(singleDay);
       dailySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(fn));
       Logger.log("Dates don't match. Adding new day %s",singleDay_noTime);
       break;

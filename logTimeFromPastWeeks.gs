@@ -89,15 +89,21 @@ function trackEvents(timeMin, timeMax){
 
 
 //~~~~~~~~~~~~~~TAKE LIST OF EVENTS FOR ONE DAY or WEEK~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function getEventDetails(events) {
-  
+function getEventDetails(events) {  
   // Access Google Calendar Time Tracker spreadsheet and input data for specified color category.
+  
   // Create array of category cells (location in spreadsheet). index 0 is 'undefined' cell.
-  var cellColorArray1 = defineCellRange('Calendar Data Import', 'D');
+  // defineCellRange('Name of Sheet', 'Letter of Column', 'First row int', 'Last row int')
+  var cellColorArray1 = defineCellRange('Calendar Data Import',2,'D',12);
+  
+  var subCatArray = defineCellRange('Calendar Data Import',16,'D',10);
   
   // Populate cells with 0.00 to reset
   for (i = 0; i < 12; i++) {
     cellColorArray1[i].setValue(0);
+  }
+  for (i = 0; i < 10; i++) {
+    subCatArray[i].setValue(0);
   }
   
   // Get time and color of event per week
@@ -122,94 +128,143 @@ function getEventDetails(events) {
         Logger.log('%s (%s)', myEvent.summary, 'ALL DAY EVENT');
       }
       else {
+        var eventName = myEvent.summary.toLowerCase();
         
-        /* ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
-        if (myEvent.summary == "Python"){
-          var cellContents = cellColorArray1[9].getValue();
-          cellColorArray1[9].setValue( cellContents + duration);
-          Logger.log(myEvent.summary)
-        }
-       */
+        
+      switch(colorID){
+    case 1:
+      // Fitness
+      // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~      
+      if (eventName.includes("meditation")){
+        var cellContents = subCatArray[7].getValue();
+        subCatArray[7].setValue(cellContents + duration);
+      } else{
+        var cellContents = subCatArray[6].getValue();
+        subCatArray[6].setValue(cellContents + duration);
+      };
+      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      var cellContents = cellColorArray1[1].getValue();
+      cellColorArray1[1].setValue(cellContents + duration);
+      Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
+      break;
+    case 2:
+      // Plan
+      var cellContents = cellColorArray1[2].getValue();
+      cellColorArray1[2].setValue(cellContents + duration);
+      // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
+      break;
+    case 3:
+      // Mix
+      var cellContents = cellColorArray1[3].getValue();
+      cellColorArray1[3].setValue(cellContents + duration);
+      // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
+      break;
+    case 4:
+      // Social 
+      var cellContents = cellColorArray1[4].getValue();
+      cellColorArray1[4].setValue(cellContents + duration);
+      break;
+      
+    case 5:
+      // Cook / Eat
+      var cellContents = cellColorArray1[5].getValue();
+      cellColorArray1[5].setValue( cellContents + duration);
+      // Logger.log('%s (%s)', myEvent.summary,duration);
+      break;
+      
+    case 6:
+      // Piano
+      var cellContents = cellColorArray1[6].getValue();
+      cellColorArray1[6].setValue( cellContents + duration);
+      break;
+      
+    case 7:
+      // UI / Marketing
+      var cellContents = cellColorArray1[7].getValue();
+      cellColorArray1[7].setValue( cellContents + duration);
+      break;
+      
+    case 8:
+      // Read
+      var cellContents = cellColorArray1[8].getValue();
+      cellColorArray1[8].setValue( cellContents + duration);
+      break;
+    case 9:
+      // Code
+      // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
+      if (eventName.includes("python")){
+        var cellContents = subCatArray[3].getValue();
+        subCatArray[3].setValue(cellContents + duration);
+      } else if (eventName.includes("tracker")){
+        var cellContents = subCatArray[4].getValue();
+        subCatArray[4].setValue(cellContents + duration);
+      } else if (eventName.includes("website")|| eventName.includes("bootcamp")){
+        var cellContents = subCatArray[5].getValue();
+        subCatArray[5].setValue(cellContents + duration);
+      }; 
+      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      var cellContents = cellColorArray1[9].getValue();
+      cellColorArray1[9].setValue( cellContents + duration);
+      break;
+    case 10:
+      // Job
+      // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
+      if (eventName.includes("curriculum") || eventName.includes("cm 421")){
+        var cellContents = subCatArray[1].getValue();
+        subCatArray[1].setValue(cellContents + duration);
+      } else if (eventName.includes("ctec") || eventName.includes("cmac")){
+        var cellContents = subCatArray[2].getValue();
+        subCatArray[2].setValue(cellContents + duration);
+      };  
+      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      var cellContents = cellColorArray1[10].getValue();
+      cellColorArray1[10].setValue( cellContents + duration);
+      break;
+    case 11:
+      // Travel 
+      var cellContents = cellColorArray1[11].getValue();
+      cellColorArray1[11].setValue( cellContents + duration);
+      // Logger.log('%s (%s)', myEvent.summary,duration);
+      break;
+      
+    default:
+      // Generic Tasks
+      var cellContents = cellColorArray1[0].getValue();
+      cellColorArray1[0].setValue(cellContents + duration);
+      break;
+      ///////////////////////////////////////////////////////
+      }  
+        
         
 //~~~~~~~~~~~~~~INPUT EVENT DETAILS INTO SPREADSHEET~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //////////////////////CONDENSE CODE////////////////////////////////
-      // Add total duration per week for each color in spreadsheet
-          switch(colorID){
-          case 1:
-            // Fitness
-            var cellContents = cellColorArray1[1].getValue();
-            cellColorArray1[1].setValue(cellContents + duration);
-            Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
-            break;
-          case 2:
-            // Plan
-            var cellContents = cellColorArray1[2].getValue();
-            cellColorArray1[2].setValue(cellContents + duration);
-            // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
-            break;
-          case 3:
-            // Mix
-            var cellContents = cellColorArray1[3].getValue();
-            cellColorArray1[3].setValue(cellContents + duration);
-            // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
-            break;
-          case 4:
-            // Social 
-            var cellContents = cellColorArray1[4].getValue();
-            cellColorArray1[4].setValue(cellContents + duration);
-            break;
-          case 5:
-            // Cook / Eat
-            var cellContents = cellColorArray1[5].getValue();
-            cellColorArray1[5].setValue( cellContents + duration);
-            // Logger.log('%s (%s)', myEvent.summary,duration);
-            break;
-          case 6:
-            // Piano
-            var cellContents = cellColorArray1[6].getValue();
-            cellColorArray1[6].setValue( cellContents + duration);
-            break;
-          case 7:
-            // UI / Marketing
-            var cellContents = cellColorArray1[7].getValue();
-            cellColorArray1[7].setValue( cellContents + duration);
-            break;
-          case 8:
-            // Read
-            var cellContents = cellColorArray1[8].getValue();
-            cellColorArray1[8].setValue( cellContents + duration);
-            break;
-          case 9:
-            // Code
-            var cellContents = cellColorArray1[9].getValue();
-            cellColorArray1[9].setValue( cellContents + duration);
-            break;
-          case 10:
-            // Job
-            var cellContents = cellColorArray1[10].getValue();
-            cellColorArray1[10].setValue( cellContents + duration);
-            break;
-          case 11:
-            // Travel 
-            var cellContents = cellColorArray1[11].getValue();
-            cellColorArray1[11].setValue( cellContents + duration);
-            // Logger.log('%s (%s)', myEvent.summary,duration);
-            break;
-          default:
-            // Generic Tasks
-            var cellContents = cellColorArray1[0].getValue();
-            cellColorArray1[0].setValue(cellContents + duration);
-            // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
-            break;
-            ///////////////////////////////////////////////////////
-        }
+      //////////////////////CONDENSE CODE////////////////////////////////
+      // Add total duration per week for each color in spreadsheet   
       }
     }
   } 
 }
 
+function test (colorID){
 
+  
+  
+}
 
+              
+            
+              
+          
+              
+          
+              
+          
+      
+          
+              
+          
+              
+            
+        
 
 
 

@@ -12,6 +12,7 @@ function autoRunScriptDaily(startDay,endDay) {
     }
   }
   else {
+    // if start and end day are null (during an auto-run)... 
     // Get day/time exactly 24 hours ago.
     var startDay1 = new Date(new Date().getTime() - (1000 * 60 * 60 * 24));
     var endDay1 = new Date();
