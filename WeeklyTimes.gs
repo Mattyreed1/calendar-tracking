@@ -11,10 +11,11 @@ function weeklyCalendarTracker(endOfWeek) {
   //If date in cell in row 1 == endOfWeek (sunday at end of week), then replace column with new data array.
   var sunday = new Date(new Date(endOfWeek).getTime() - (1000 * 60 * 60 * 24));
   var sunday_noTime = new Date(sunday.toDateString());
+  
+  var inputCellsRange = dataImportSheet.getRange(2,4,24,1);
   var dataInputArray = [];
-  var numInputRows = 13;
-  for (var i=2; i <= numInputRows; i++){
-    dataInputArray.push(dataImportSheet.getRange(i, 4).getValue());
+  for (var i=0; i < 24; i++){
+    dataInputArray.push(inputCellsRange.getCell((i+1),1).getValue());
   }
   
   Logger.log(dataInputArray);

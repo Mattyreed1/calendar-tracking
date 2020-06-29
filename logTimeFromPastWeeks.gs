@@ -129,13 +129,16 @@ function getEventDetails(events) {
       }
       else {
         var eventName = myEvent.summary.toLowerCase();
-        
+
+//~~~~~~~~~~~~~~INPUT EVENT DETAILS INTO SPREADSHEET~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      //???????????????????CONDENSE CODE??????????????????????????
+      // Add total duration per week for each color in spreadsheet         
         
       switch(colorID){
     case 1:
       // Fitness
       // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~      
-      if (eventName.includes("meditation")){
+      if (eventName.includes("meditate")){
         var cellContents = subCatArray[7].getValue();
         subCatArray[7].setValue(cellContents + duration);
       } else{
@@ -190,7 +193,7 @@ function getEventDetails(events) {
       cellColorArray1[8].setValue( cellContents + duration);
       break;
     case 9:
-      // Code
+      // Programming / Code
       // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
       if (eventName.includes("python")){
         var cellContents = subCatArray[3].getValue();
@@ -198,7 +201,7 @@ function getEventDetails(events) {
       } else if (eventName.includes("tracker")){
         var cellContents = subCatArray[4].getValue();
         subCatArray[4].setValue(cellContents + duration);
-      } else if (eventName.includes("website")|| eventName.includes("bootcamp")){
+      } else if (eventName.includes("website") || eventName.includes("bootcamp") || eventName.includes("lucas")){
         var cellContents = subCatArray[5].getValue();
         subCatArray[5].setValue(cellContents + duration);
       }; 
@@ -229,6 +232,15 @@ function getEventDetails(events) {
       
     default:
       // Generic Tasks
+      // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
+      if (eventName.includes("shop")){
+        var cellContents = subCatArray[8].getValue();
+        subCatArray[8].setValue(cellContents + duration);
+      } else if (eventName.includes("clean") || eventName.includes("laundry")){
+        var cellContents = subCatArray[9].getValue();
+        subCatArray[9].setValue(cellContents + duration);
+      };  
+      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
       var cellContents = cellColorArray1[0].getValue();
       cellColorArray1[0].setValue(cellContents + duration);
       break;
@@ -236,9 +248,7 @@ function getEventDetails(events) {
       }  
         
         
-//~~~~~~~~~~~~~~INPUT EVENT DETAILS INTO SPREADSHEET~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      //////////////////////CONDENSE CODE////////////////////////////////
-      // Add total duration per week for each color in spreadsheet   
+  
       }
     }
   } 
