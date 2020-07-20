@@ -18,10 +18,12 @@
       
       
       
-      <button onclick="myFunction()">TEST</button>
-      <input type="submit" value="Submit" class="action" onclick="submit_data()" />
+      <button class="action" onclick="clickAction()"> Submit</button>
+
       <input type="button" value="Close" onclick="google.script.host.close()" />
     </div>
+    
+    <div id='result'></div>
     
     <div id="output"></div>
     
@@ -56,7 +58,7 @@
     //Logger.log("it worked");
     alert('Button was clicked!');
   }
-</script>
+  </script>
      
      
      <script>
@@ -76,6 +78,34 @@
      alert('You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.');
      };
      </script>
+     
+     <script>
+  function onSuccess() {
+    var div = document.getElementById('result');
+    div.innerHTML = '<div>Sucess!</div>';
+  }
+
+  function onFailure() {
+    var div = document.getElementById('result');
+    div.innerHTML = '<div>Fail!</div>';
+  }
+  function clickAction(){
+    var startDateInput = $("#startdatepicker").val();
+    var endDateInput = $("#enddatepicker").val();
+
+    var div = document.getElementById('result');
+    
+    div.innerHTML = '<div> Loading... See how many backflips you can do! <br><img src="https://media.giphy.com/media/4T1NFafropdQOrBYw6/giphy.gif" class="load-icon"></div>';
+    
+    google.script.run
+    .withSuccessHandler(onSuccess)
+    .withFailureHandler(onFailure)
+    .runScriptFromInput(startDateInput, endDateInput);
+    alert('You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.')
+  }
+     </script>
+
+
 
   </body>
 </html>

@@ -131,7 +131,8 @@ function getEventDetails(events) {
         var eventName = myEvent.summary.toLowerCase();
 
 //~~~~~~~~~~~~~~INPUT EVENT DETAILS INTO SPREADSHEET~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      //???????????????????CONDENSE CODE??????????????????????????
+      //?????????????????? CONDENSE CODE ?????????????????????????
+
       // Add total duration per week for each color in spreadsheet         
         
       switch(colorID){
@@ -148,7 +149,7 @@ function getEventDetails(events) {
       //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       var cellContents = cellColorArray1[1].getValue();
       cellColorArray1[1].setValue(cellContents + duration);
-      Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
+      // Logger.log('%s (%s) [%s]', myEvent.summary,duration,start);
       break;
     case 2:
       // Plan
@@ -256,8 +257,6 @@ function getEventDetails(events) {
 
 function test (colorID){
 
-  
-  
 }
 
               
