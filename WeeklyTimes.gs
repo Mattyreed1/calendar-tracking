@@ -61,7 +61,7 @@ function weeklyCalendarTracker(endOfWeek,n=1) {
     }
   }
     
-    // else: it is a date in the list, input data at column n.
+  // else: it is a date in the list, input data at column n.
   else {
     weeklySheet.getRange(2,n,dataInputArray.length).setValues(dataInputArray.map(fn));
   }
