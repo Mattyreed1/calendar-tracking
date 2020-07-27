@@ -74,7 +74,7 @@ function categorizeEvents(events) {
   return categoryDict
 }
 
-function inputEventData() {
+function inputEventData(categoryDict) {
   // Map dictionary values to an array
   // Input date in first row
     // sheet.getRange('A1').setFormula('=date(2015,1,1)');
