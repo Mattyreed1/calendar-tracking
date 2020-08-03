@@ -20,14 +20,14 @@ function weeklyCalendarTracker(endOfWeek,n=1) {
   
   Logger.log(dataInputArray);
   
-  const fn = function(v) {
+  const map_fn = function(v) {
     return [ v ];
   };
   
   // if n == 1: it is a new date, input data at nextColumn
   if (n == 1){
     weeklySheet.getRange(1, nextColumn).setValue(sunday);
-    weeklySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(fn));
+    weeklySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(map_fn));
   }
   
   // else if n == 0: it is the first week in the list, so check if it matches an existing week. Input data.

@@ -53,31 +53,6 @@
      };
      </script>
      
-     <script>
-  function myFunction() {   
-    //Logger.log("it worked");
-    alert('Button was clicked!');
-  }
-  </script>
-     
-     
-     <script>
-     function submit_data() {
-       
-       var startDateInput = $("#startdatepicker").val();
-       var endDateInput = $("#enddatepicker").val();
-       var div = document.getElementById('output');
-       
-       // Throw error message if anyhting but Monday's are selected.
-       // if (startMomentDate.getDay()   endMomentDate
-       
-       // div.innerHTML = 'You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.';
-       
-       google.script.run.withSuccessHandler()
-         .runScriptFromInput(startDateInput, endDateInput);
-     alert('You chose start date: ' + startDateInput + ' and end date: '+ endDateInput+'.');
-     };
-     </script>
      
      <script>
   function onSuccess() {

@@ -40,7 +40,7 @@ function categorizeEvents(events) {
     9:0,
     10:0,
     11:0,
-  }
+  };
   // Categorize and Organize events into dictionary
   for (i = 0; i < events.length; i++) {    
     // get one event from the list of events
@@ -54,7 +54,7 @@ function categorizeEvents(events) {
       var colorID = parseInt(myEvent.colorId);
       // Set default events to colorID = 0
       if (!colorID){
-        colorID = 0
+        colorID = 0;
       }
       // get the start date of the single event and convert format
       var start = new Date(getDateFromIso(myEvent.start.dateTime));
@@ -71,14 +71,34 @@ function categorizeEvents(events) {
   }
   //Return dictionary where keys=colorIDs and values=hours of time
   Logger.log(categoryDict);  
-  return categoryDict
+  return categoryDict;
 }
 
-function inputEventData(categoryDict) {
-  // Map dictionary values to an array
-  // Input date in first row
-    // sheet.getRange('A1').setFormula('=date(2015,1,1)');
-  // Input values into spreadsheet
+
+function inputEventData(categoryDict, date) {
+  // Get Monthly data sheet
+  var ss = SpreadsheetApp.getActive();
+  var monthlySheet = ss.getSheetByName('Calendar Data by Month');
+  var monthlyDataRange = monthlySheet.getDataRange();
+  var numRows = monthlyDataRange.getNumRows();
+  var numColumns = monthlyDataRange.getNumColumns();
+  var nextColumn = numColumns + 1;
   
+  // Map dictionary values to an array
+  var dataInputArray = Object.values(categoryDict);
+  Logger.log(dataInputArray);
+  
+
+  // Create map function to convert list to array and prep for input into spreadsheet.
+  const map_fn = function(v) {
+    return [ v ];
+  };
+  
+  // Input column header to be the name of the month at next available column.
+    // sheet.getRange('1, nextColumn').setFormula('=date(MMMM,YYYY)');
+  monthlySheet.getRange(1, nextColumn).setValue(date).setNumberFormat("MMMM");
+
+  // Input array of times at next available column.
+  monthlySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(map_fn)); 
 
 }

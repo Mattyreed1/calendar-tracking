@@ -8,8 +8,8 @@ var ui = SpreadsheetApp.getUi();
 function onOpen(e) {
   var ui = SpreadsheetApp.getUi();
   // Create menu options
-  ui.createAddonMenu()
-    .addItem("Test the Script", "initializeDialog")
+  ui.createMenu('Calendar Tracker App')
+    .addItem("Run the Script", "initializeDialog")
     .addToUi();
 };
 
@@ -23,7 +23,7 @@ function initializeDialog() {
     .setHeight(450);
   
   // Display the dialog
-  var dialog = ui.showModalDialog(html, "Script Tester");
+  var dialog = ui.showModalDialog(html, "Time Tracker Script");
   
   // return html
 };
