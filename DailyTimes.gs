@@ -2,10 +2,17 @@ function dailyCalendarTracker(startOfDay) {
   var ss = SpreadsheetApp.getActive();
   var dailySheet = ss.getSheetByName('Calendar Data by Day');
   var dataImportSheet = ss.getSheetByName('Calendar Data Import');
+  var dash = ss.getSheetByName('Dashboard');
+  // var charts = dash.getCharts();
+  var dailyChart = dash.getCharts()[3];
+  var dailyCahrtID = dailyChart.getChartId();
   var dailyDataRange = dailySheet.getDataRange();
   var numRows = dailyDataRange.getNumRows();
   var numColumns = dailyDataRange.getNumColumns();
   var nextColumn = numColumns + 1;
+  var x = nextColumn - 30;
+  var dailyDataNewRange = dailySheet.getDataRange(1,x,12,30);
+  var chartRange = dailyChart.getRanges()[0];
   
   /*
   dailySheet.getRange(1, nextColumn).setValue(startOfDay);
@@ -55,5 +62,10 @@ function dailyCalendarTracker(startOfDay) {
     }
   }
 
+  dailyChart = dailyChart.modify()
+  .removeRange(chartRange)
+  .addRange(dailyDataNewRange)
+  .build();
+  dash.updateChart(dailyChart);
   
 }
