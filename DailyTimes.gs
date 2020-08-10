@@ -65,7 +65,7 @@ function dailyCalendarTracker(startOfDay) {
   dailyChart = dailyChart.modify()
   .removeRange(chartRange)
   .addRange(dailyDataNewRange)
+  .setOption('backgroundColor', {'stroke':'white', 'strokeWidth':0})
   .build();
   dash.updateChart(dailyChart);
-  
 }
