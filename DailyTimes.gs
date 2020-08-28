@@ -11,7 +11,7 @@ function dailyCalendarTracker(startOfDay) {
   var numColumns = dailyDataRange.getNumColumns();
   var nextColumn = numColumns + 1;
   var x = nextColumn - 30;
-  var dailyDataNewRange = dailySheet.getDataRange(1,x,12,30);
+  var dailyDataNewRange = dailySheet.getRange(1,x,12,30);
   var chartRange = dailyChart.getRanges()[0];
   
   /*

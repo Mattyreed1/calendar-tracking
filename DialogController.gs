@@ -38,7 +38,8 @@ function runScriptFromInput(startDateInput, endDateInput) {
   //Display the values submitted from the dialog box in the Logger.
   Logger.log("Start date - End date = %s - %s",startMomentDate, endMomentDate);
   Logger.log(startMomentDate.getDay(),endMomentDate.getDay());
-       
+  
+  /*
   var list = listOfWeeks(startMomentDate, endMomentDate);
   Logger.log("list of weeks %s", list);
   
@@ -55,8 +56,9 @@ function runScriptFromInput(startDateInput, endDateInput) {
     weeklyCalendarTracker(list[n][1],nextColumn);
     nextColumn = nextColumn + 1;
     Logger.log('Next column is %s', nextColumn);
-   };
-  // autoRunScriptDaily(startMomentDate,endMomentDate);
+   }
+  */
+  autoRunScriptDaily(startMomentDate,endMomentDate);
 };
 
 

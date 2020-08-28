@@ -64,9 +64,9 @@ function listOfDays(startDay, endDay) {
 
 //~~~~~~~~~~~~~~~~~~TAKE START/END DAYS FOR INDIVIDUAL DAY or WEEK~~~~~~~~~~~~~~~~~~~~
 function trackEvents(timeMin, timeMax){
-  // Gets your primary Calendar 
-  var calendarId = 'primary';
-  
+  // List your calendars.
+  var cals =  ['mattyreed1@gmail.com']; 
+  var events = [];
   // Define optional arguments
   var optionalArgs = {
     timeMin: (timeMin).toISOString(),
@@ -77,10 +77,12 @@ function trackEvents(timeMin, timeMax){
     orderBy: 'startTime',
   };
   Logger.log('%s - %s', timeMin, timeMax);
+  for (i = 0; i < cals.length; i++){
+    // Get past week Events in array  
+    var response = Calendar.Events.list(cals[i], optionalArgs);
+    events.push.apply(events,response.items);
+  }
   
-  // Get past week Events in array  
-  var response = Calendar.Events.list(calendarId, optionalArgs);
-  var events = response.items;
   
 //~~~~~~~~~~~~~~~~~~RETURN LIST OF EVENTS FOR SINGLE DAY or WEEK~~~~~~~~~~~~~~~~~~~~  
   // Logger.log(events);

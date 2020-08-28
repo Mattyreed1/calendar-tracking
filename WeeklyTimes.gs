@@ -12,6 +12,7 @@ function weeklyCalendarTracker(endOfWeek,n=1) {
   var sunday = new Date(new Date(endOfWeek).getTime() - (1000 * 60 * 60 * 24));
   var sunday_noTime = new Date(sunday.toDateString());
   
+  
   var inputCellsRange = dataImportSheet.getRange(2,4,24,1);
   var dataInputArray = [];
   for (var i=0; i < 24; i++){
@@ -43,7 +44,7 @@ function weeklyCalendarTracker(endOfWeek,n=1) {
       // Logger.log(date_noTime.getTime(), sunday_noTime.getTime());
     
       if (date_noTime.getTime() == sunday_noTime.getTime()){
-        weeklySheet.getRange(2,i,dataInputArray.length).setValues(dataInputArray.map(fn));
+        weeklySheet.getRange(2,i,dataInputArray.length).setValues(dataInputArray.map(map_fn));
         // input subcategory array
         Logger.log("Dates match");
         followingColumn = i+1;
@@ -51,7 +52,7 @@ function weeklyCalendarTracker(endOfWeek,n=1) {
       }
       else if (i == numColumns){
       weeklySheet.getRange(1, nextColumn).setValue(sunday);
-      weeklySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(fn));
+      weeklySheet.getRange(2,nextColumn,dataInputArray.length).setValues(dataInputArray.map(map_fn));
       Logger.log("Dates don't match")
       break;
       }
