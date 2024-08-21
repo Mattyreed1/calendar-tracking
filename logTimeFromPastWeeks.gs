@@ -198,7 +198,7 @@ function getEventDetails(events) {
     case 9:
       // Programming / Code
       // ~~~~~~~~ISOLATE SPECIFIC EVENT TITLE~~~~~~~~~~~
-      if (eventName.includes("python")){
+      if (eventName.includes("python") || eventName.includes("egnyte")){
         var cellContents = subCatArray[3].getValue();
         subCatArray[3].setValue(cellContents + duration);
       } else if (eventName.includes("tracker")){
@@ -257,9 +257,6 @@ function getEventDetails(events) {
   } 
 }
 
-function test (colorID){
-
-}
 
               
             
