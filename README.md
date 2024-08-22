@@ -1,5 +1,5 @@
 # calendar-tracking
-Track calendar events in Google Calendar. 
+Track calendar events in Google Calendar. <br>
 Display data in a Google Sheet.
 Google Calendar Extension to help categorize events. 
 
