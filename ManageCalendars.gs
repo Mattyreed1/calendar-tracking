@@ -1,6 +1,9 @@
 /**
  * Lists the calendars shown in the user's calendar list.
  */
+
+var calendarID = ''
+
 function listCalendars() {
   var calendars;
   var pageToken;
@@ -25,7 +28,7 @@ function listCalendars() {
  * Lists the next 10 upcoming events in the user's default calendar.
  */
 function listNext10Events() {
-  var calendarId = 'mattyreed1@gmail.com';
+  var calendarId = calendarID;
   var now = new Date();
   var events = Calendar.Events.list(calendarId, {
     timeMin: now.toISOString(),
