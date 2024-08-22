@@ -1,6 +1,8 @@
+var calendarID = ''
+
 function trackEventsFromPastMonth(timeMin, timeMax){
   // Gets your primary Calendar 
-  var calendarId = 'mattyreed1@gmail.com';
+  var calendarId = calendarID;
   
   
   // Define optional arguments
