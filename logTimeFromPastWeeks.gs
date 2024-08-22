@@ -1,3 +1,5 @@
+var calendarID = ''
+
 //~~~~~~~~~~~~~~~~~~~~GET START DAY & # OF WEEKS FROM USER INPUT~~~~~~~~~~~~~~~~~~~~~~~~~
 function listOfWeeks(startDay, endDay, inputNumOfWeeks=0) {
   
@@ -65,7 +67,7 @@ function listOfDays(startDay, endDay) {
 //~~~~~~~~~~~~~~~~~~TAKE START/END DAYS FOR INDIVIDUAL DAY or WEEK~~~~~~~~~~~~~~~~~~~~
 function trackEvents(timeMin, timeMax){
   // List your calendars.
-  var cals =  ['mattyreed1@gmail.com']; 
+  var cals =  [calendarID]; 
   var events = [];
   // Define optional arguments
   var optionalArgs = {
